@@ -127,7 +127,7 @@ After applying an AI-generated fix, the system runs the tests again to verify wh
                  ▼
               Complete
 
-###🧠 AI Model
+##🧠 AI Model
 
 This project uses a locally running Large Language Model through Ollama.
 
@@ -137,7 +137,7 @@ Qwen2.5-Coder 7B
 
 Using a local model allows the project to perform code analysis without depending on a cloud-based AI API.
 
-###🛠️ Technologies Used
+##🛠️ Technologies Used
 Technology	Purpose
 Python	Core programming language
 Ollama	Local LLM runtime
@@ -146,7 +146,7 @@ Pytest	Automated testing
 GitPython	GitHub repository cloning
 Git	Version control
 
-###📁 Project Structure
+##📁 Project Structure
 autonomous-software-engineering-agent/
 │
 ├── agent.py
@@ -180,7 +180,7 @@ auto_fix.py	Applies an AI-generated fix automatically
 repository.py	Reads and analyzes repository source files
 github_loader.py	Clones GitHub repositories
 
-###⚙️ Requirements
+##⚙️ Requirements
 
 Make sure the following are installed:
 
@@ -196,7 +196,7 @@ Make sure the Qwen model is available in Ollama:
 
 ollama pull qwen2.5-coder:7b
 
-###▶️ Running the Project
+##▶️ Running the Project
 
 Run the demonstration project using:
 
@@ -212,7 +212,7 @@ The orchestrator will perform the following steps:
 6. Automated Fixing (if tests fail)
 7. Post-Fix Verification
 
-###🧪 Demonstration
+##🧪 Demonstration
 
 The included demo project contains a simple calculator application.
 
@@ -253,7 +253,7 @@ POST-FIX VERIFICATION
 
 AUTONOMOUS ANALYSIS COMPLETE
 
-###🔗 GitHub Repository Support
+##🔗 GitHub Repository Support
 
 The system can also clone a GitHub repository using the GitHub loader.
 
@@ -263,7 +263,7 @@ python github_loader.py
 
 The repository is cloned locally and can then be analyzed by the agent workflow.
 
-###⚠️ Current Limitations
+##⚠️ Current Limitations
 
 This is an academic/course project prototype.
 
@@ -275,7 +275,7 @@ The automated fixing workflow focuses on top-level Python source files.
 AI-generated fixes should be reviewed before being used in real production systems.
 Security analysis is based on LLM-assisted inspection and is not a replacement for professional security testing.
 
-###🔮 Future Enhancements
+##🔮 Future Enhancements
 
 Possible future improvements include:
 
@@ -290,11 +290,11 @@ Web-based user interface
 Docker-based execution
 More advanced agent coordination
 
-###🎯 Project Objective
+##🎯 Project Objective
 
 The main objective of this project is to demonstrate how Artificial Intelligence and Large Language Models can automate software engineering activities, including code analysis, bug detection, security review, testing, automated repair, and verification.
 
-###🎓 Project Type
+##🎓 Project Type
 
 Academic / Course Project
 
