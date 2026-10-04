@@ -1,251 +1,294 @@
-\# Autonomous Software Engineering \& Code Review Agent
+# Autonomous Software Engineering & Code Review Agent
 
+An AI-powered software engineering agent that analyzes source code, detects bugs and security issues, generates tests, executes tests, and automatically fixes detected failures using a local Large Language Model.
 
+## 🚀 Overview
 
-\## Overview
+The **Autonomous Software Engineering & Code Review Agent** is a Python-based academic project designed to automate common software engineering and code review tasks.
 
+The system uses **Ollama** with the **Qwen2.5-Coder 7B** model to analyze a repository and assist with:
 
+- Code understanding
+- Bug detection
+- Security analysis
+- Test generation
+- Test execution
+- Automated bug fixing
+- Post-fix verification
 
-The Autonomous Software Engineering \& Code Review Agent is an AI-powered software analysis system that helps automate common software engineering tasks.
+The project demonstrates how Large Language Models (LLMs) can be integrated into an automated software engineering workflow.
 
+---
 
+## ✨ Key Features
 
-The system analyzes a software repository, identifies possible bugs and security issues, generates tests, executes tests, and attempts to automatically fix detected test failures.
+### 🔍 Code Understanding
+Analyzes the repository structure and identifies:
 
+- Programming languages
+- Important source files
+- Functions and classes
+- Code relationships
+- Potential areas requiring investigation
 
+### 🐛 Bug Detection
+AI analyzes source files for possible:
 
-The project uses a local Large Language Model (LLM) through Ollama and Qwen2.5-Coder.
+- Logic errors
+- Incorrect conditions
+- Exception handling problems
+- Edge-case issues
+- Type-related problems
+- Resource-related issues
 
+### 🔐 Security Analysis
+The security agent checks for common security concerns such as:
 
+- SQL injection
+- Command injection
+- Cross-site scripting (XSS)
+- Path traversal
+- Hardcoded secrets
+- Unsafe file operations
+- Insecure authentication and authorization
+- Sensitive information exposure
 
-\## Features
+### 🧪 Test Generation
+The system uses the AI model to generate tests covering:
 
+- Normal behavior
+- Edge cases
+- Invalid inputs
+- Boundary conditions
+- Exceptions
+- Business logic
 
+### ▶️ Automated Test Execution
+Generated or existing tests are executed using **Pytest**.
 
-\- Code understanding
+The system determines whether the tests pass or fail and uses the results for further analysis.
 
-\- Automated bug detection
+### 🔧 Automated Bug Fixing
+When tests fail, the system sends the source code and test failure information to the AI model.
 
-\- Security analysis
+The AI proposes a corrected version of the source code, which is then applied and tested again.
 
-\- AI-based test generation
+### ✅ Post-Fix Verification
+After applying an AI-generated fix, the system runs the tests again to verify whether the problem has been resolved.
 
-\- Automated test execution
+---
 
-\- AI-powered bug fixing
-
-\- Post-fix verification
-
-\- GitHub repository cloning
-
-
-
-\## System Workflow
-
-
+## 🔄 System Workflow
 
 ```text
+                Repository / Project
+                        │
+                        ▼
+              ┌───────────────────┐
+              │ Code Understanding │
+              │      Agent         │
+              └─────────┬─────────┘
+                        │
+          ┌─────────────┴─────────────┐
+          ▼                           ▼
+ ┌─────────────────┐         ┌─────────────────┐
+ │  Bug Detection  │         │ Security        │
+ │      Agent      │         │ Analysis Agent  │
+ └────────┬────────┘         └────────┬────────┘
+          │                           │
+          └─────────────┬─────────────┘
+                        ▼
+              ┌───────────────────┐
+              │  Test Generation  │
+              │       Agent       │
+              └─────────┬─────────┘
+                        ▼
+              ┌───────────────────┐
+              │   Test Runner     │
+              │      Pytest       │
+              └─────────┬─────────┘
+                        │
+                 Tests Failed?
+                    /       \
+                  Yes        No
+                   │          │
+                   ▼          ▼
+          ┌──────────────┐   Complete
+          │  Auto Fix    │
+          │    Agent     │
+          └──────┬───────┘
+                 │
+                 ▼
+          ┌──────────────┐
+          │ Verification │
+          │    Tests     │
+          └──────┬───────┘
+                 │
+                 ▼
+              Complete
 
-Repository
+🧠 AI Model
 
-&#x20;   |
+This project uses a locally running Large Language Model through Ollama.
 
-&#x20;   v
+Model:
 
-Code Understanding Agent
+Qwen2.5-Coder 7B
 
-&#x20;   |
+Using a local model allows the project to perform code analysis without depending on a cloud-based AI API.
 
-&#x20;   v
-
-Bug Detection Agent
-
-&#x20;   |
-
-&#x20;   v
-
-Security Analysis Agent
-
-&#x20;   |
-
-&#x20;   v
-
-Test Generation Agent
-
-&#x20;   |
-
-&#x20;   v
-
-Test Execution
-
-&#x20;   |
-
-&#x20;   v
-
-AI Auto-Fix
-
-&#x20;   |
-
-&#x20;   v
-
-Post-Fix Verification
-
-
-
-Technologies Used
-
-Python
-
-Ollama
-
-Qwen2.5-Coder
-
-Pytest
-
-GitPython
-
-Project Structure
-
-autonomous-code-agent/
-
-|
-
+🛠️ Technologies Used
+Technology	Purpose
+Python	Core programming language
+Ollama	Local LLM runtime
+Qwen2.5-Coder 7B	AI code analysis and fixing
+Pytest	Automated testing
+GitPython	GitHub repository cloning
+Git	Version control
+📁 Project Structure
+autonomous-software-engineering-agent/
+│
 ├── agent.py
-
-├── bug\_agent.py
-
-├── security\_agent.py
-
-├── test\_agent.py
-
-├── test\_runner.py
-
-├── fix\_agent.py
-
-├── auto\_fix.py
-
+├── auto_fix.py
+├── bug_agent.py
+├── fix_agent.py
+├── github_loader.py
 ├── orchestrator.py
-
 ├── repository.py
-
-├── github\_loader.py
-
+├── security_agent.py
+├── test_agent.py
+├── test_runner.py
+│
+├── demo_project/
+│   ├── calculator.py
+│   └── test_calculator.py
+│
 ├── requirements.txt
+├── README.md
+└── .gitignore
+Main Components
+File	Description
+orchestrator.py	Controls the complete workflow
+agent.py	Performs code understanding
+bug_agent.py	Detects potential bugs
+security_agent.py	Performs security analysis
+test_agent.py	Generates test cases
+test_runner.py	Executes Pytest
+fix_agent.py	Analyzes failed tests and proposes fixes
+auto_fix.py	Applies an AI-generated fix automatically
+repository.py	Reads and analyzes repository source files
+github_loader.py	Clones GitHub repositories
+⚙️ Requirements
 
-|
+Make sure the following are installed:
 
-└── demo\_project/
-
-&#x20;   ├── calculator.py
-
-&#x20;   └── test\_calculator.py
-
-Requirements
-
-Python 3.11 or later
-
+Python 3.11+
 Ollama
-
-Qwen2.5-Coder 7B model
-
-
+Git
 
 Install the required Python packages:
 
-
-
 pip install -r requirements.txt
 
-
-
-Install the AI model:
-
-
+Make sure the Qwen model is available in Ollama:
 
 ollama pull qwen2.5-coder:7b
+▶️ Running the Project
 
-How to Run
+Run the demonstration project using:
 
+python orchestrator.py demo_project
 
+The orchestrator will perform the following steps:
 
-Activate the virtual environment:
+1. Code Understanding
+2. Bug Detection
+3. Security Analysis
+4. Test Generation
+5. Test Execution
+6. Automated Fixing (if tests fail)
+7. Post-Fix Verification
+🧪 Demonstration
 
+The included demo project contains a simple calculator application.
 
+A bug is intentionally introduced into the is_even() function.
 
-.\\.venv\\Scripts\\Activate.ps1
+Initial Bug
+def is_even(number):
+    return number % 2 == 1
 
+The function incorrectly identifies even and odd numbers.
 
+The test execution produces failures:
 
-Run the autonomous software engineering agent:
+1 passed
+2 failed
 
+The system then starts the automated repair process.
 
+AI-Based Fix
 
-python orchestrator.py demo\_project
+The AI agent identifies the incorrect condition and generates the corrected implementation:
 
-Demonstration
+def is_even(number):
+    return number % 2 == 0
 
+The tests are executed again.
 
+Final Result
+3 passed
 
-The demo project contains a deliberately introduced bug in the is\_even() function.
+The system then performs post-fix verification and confirms that the tests pass successfully.
 
+AUTO-FIX SUCCESSFUL
 
-
-The agent performs the following steps:
-
-
-
-Runs the test suite.
-
-Detects the failed tests.
-
-Analyzes the source code and test failure using Qwen2.5-Coder.
-
-Generates a corrected version of the source code.
-
-Applies the proposed fix.
-
-Runs the tests again.
-
-Verifies the corrected code.
-
-
-
-Expected final result:
-
-
+POST-FIX VERIFICATION
 
 3 passed
 
-GitHub Repository Support
+AUTONOMOUS ANALYSIS COMPLETE
+🔗 GitHub Repository Support
 
+The system can also clone a GitHub repository using the GitHub loader.
 
+Example:
 
-The project can clone a GitHub repository for analysis.
+python github_loader.py
 
+The repository is cloned locally and can then be analyzed by the agent workflow.
 
+⚠️ Current Limitations
 
-Run:
+This is an academic/course project prototype.
 
+Current limitations include:
 
+Automated repair is primarily demonstrated with Python projects.
+Test execution currently uses Pytest.
+The automated fixing workflow focuses on top-level Python source files.
+AI-generated fixes should be reviewed before being used in real production systems.
+Security analysis is based on LLM-assisted inspection and is not a replacement for professional security testing.
+🔮 Future Enhancements
 
-python github\_loader.py
+Possible future improvements include:
 
+Support for additional programming languages
+Improved multi-file automated fixing
+Static analysis integration
+GitHub pull request generation
+Better test generation
+Code quality metrics
+Improved security scanning
+Web-based user interface
+Docker-based execution
+More advanced agent coordination
+🎯 Project Objective
 
+The main objective of this project is to demonstrate how Artificial Intelligence and Large Language Models can automate software engineering activities, including code analysis, bug detection, security review, testing, automated repair, and verification.
 
-Then enter the GitHub repository URL when prompted.
-
-
-
-Objective
-
-
-
-The objective of this project is to demonstrate how AI agents can automate software engineering activities such as code analysis, bug detection, security analysis, testing, debugging, and verification.
-
-
-
-Project Type
-
-
+🎓 Project Type
 
 Academic / Course Project
+
+Developed as a demonstration of AI-assisted autonomous software engineering using local Large Language Models.
